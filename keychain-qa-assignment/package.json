@@ -1,0 +1,22 @@
+{
+  "name": "keychain-qa-assignment",
+  "version": "1.0.0",
+  "description": "Agentic-first test framework for Conduit (RealWorld) application",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  },
+  "keywords": ["playwright", "testing", "typescript", "agentic"],
+  "author": "Harish Kumar",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0",
+    "typescript": "^5.3.3"
+  }
+}
