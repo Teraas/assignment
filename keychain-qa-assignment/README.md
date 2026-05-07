@@ -255,6 +255,9 @@ test('should create article', async ({ authenticatedRequest }) => {
 ## Test Coverage
 
 **25+ tests** across 4 domains:
+Using the App : react-redux-realworld-example-app
+API : https://github.com/cirosantilli/node-express-sequelize-realworld-example-app
+Database : sqllite
 
 ### Content Domain (10 tests)
 - Article CRUD operations (API) - Working
