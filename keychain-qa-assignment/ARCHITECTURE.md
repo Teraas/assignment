@@ -135,7 +135,7 @@ keychain-qa-assignment/
 ### 4. Fixture-Based Authentication
 - **Decision**: Custom Playwright fixtures create authenticated test users automatically
 - **Why**:
-  - Fulfills assignment requirement: "shared auth and data management patterns"
+  - Fulfills  requirement: "shared auth and data management patterns"
   - Tests inherit `authenticatedRequest` and `testUser` automatically
   - Each test gets fresh user (data isolation & no flaky shared state)
   - No need for beforeEach hooks in tests - cleaner test code
@@ -148,7 +148,7 @@ keychain-qa-assignment/
 - **Why**:
   - API tests are fast, deterministic, easier for agents to extend
   - UI tests verify actual user experience
-  - Both required by assignment
+  - Both required by requirement
   - Different test data strategies work better for each
 - **Rejected**: Everything via UI (slower, less reliable)
 - **Constraint to flip**: If UI testing was the only deliverable

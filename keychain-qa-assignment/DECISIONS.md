@@ -174,7 +174,7 @@ test('should work', async ({ authenticatedRequest, testUser, page }) => {
 ```
 
 **Why**:
-- **Fulfills Assignment**: "Shared auth and data management patterns"
+- **Fulfills requirement**: "Shared auth and data management patterns"
 - **No Duplicate Setup**: Each test gets fresh user without beforeEach hooks
 - **Data Isolation**: Tests don't interfere with each other
 - **Faster**: No UI-based login for every test (API-based setup)
