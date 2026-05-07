@@ -20,41 +20,46 @@ export class EditorPageObject {
    * Navigate to the article editor page.
    */
   async navigateToEditorPage(): Promise<void> {
-    await this.page.goto(`${ENV.BASE_URL}/#/editor`, { waitUntil: 'networkidle' });
+    await this.page.goto(`${ENV.BASE_URL}/editor`, { waitUntil: 'networkidle' });
   }
 
   /**
    * Check if editor page is loaded.
    */
   async isEditorPageLoaded(): Promise<boolean> {
-    return await this.page.isVisible('input[placeholder="Article Title"]');
+    try {
+      await this.page.locator('input[placeholder="Article Title"]').waitFor({ timeout: 5000 });
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   /**
    * Fill article title field.
    */
   async fillTitleInputField(title: string): Promise<void> {
-    await this.page.fill('input[placeholder="Article Title"]', title);
+    const titleField = this.page.locator('input[placeholder="Article Title"]');
+    await titleField.waitFor({ timeout: 10000 });
+    await titleField.fill(title);
   }
 
   /**
    * Fill article description/subtitle field.
    */
   async fillDescriptionInputField(description: string): Promise<void> {
-    await this.page.fill(
-      'input[placeholder="What\'s this article about?"]',
-      description
-    );
+    const descField = this.page.locator('input[placeholder="What\'s this article about?"]');
+    await descField.waitFor({ timeout: 10000 });
+    await descField.fill(description);
   }
 
   /**
    * Fill article body/content field.
    */
   async fillBodyTextareaField(body: string): Promise<void> {
-    await this.page.fill(
-      'textarea[placeholder="Write your article (in markdown)"]',
-      body
-    );
+    const bodyField = this.page.locator('textarea[placeholder="Write your article (in markdown)"]');
+    await bodyField.waitFor({ timeout: 10000 });
+    await bodyField.fill(body);
   }
 
   /**
@@ -62,24 +67,18 @@ export class EditorPageObject {
    */
   async addTagToArticle(tag: string): Promise<void> {
     const tagInput = this.page.locator('input[placeholder="Enter tags"]');
+    await tagInput.waitFor({ timeout: 10000 });
     await tagInput.fill(tag);
     await this.page.keyboard.press('Enter');
-  }
-
-  /**
-   * Add multiple tags to the article.
-   */
-  async addMultipleTagsToArticle(tags: string[]): Promise<void> {
-    for (const tag of tags) {
-      await this.addTagToArticle(tag);
-    }
   }
 
   /**
    * Click the publish button to create/update article.
    */
   async clickPublishButton(): Promise<void> {
-    await this.page.click('button:has-text("Publish Article")');
+    const publishBtn = this.page.locator('button:has-text("Publish Article")');
+    await publishBtn.waitFor({ timeout: 10000 });
+    await publishBtn.click();
   }
 
   /**

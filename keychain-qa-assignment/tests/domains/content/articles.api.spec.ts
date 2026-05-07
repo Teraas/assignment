@@ -10,6 +10,7 @@
  */
 
 import { test, expect } from '../../fixtures/auth.fixture';
+import { ApiClient } from '../../../src/core/api-client';
 import { ENV } from '../../../src/core/env.config';
 import { generateArticleData } from '../../fixtures/data-factory';
 

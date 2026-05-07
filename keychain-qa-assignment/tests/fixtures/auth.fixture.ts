@@ -36,12 +36,29 @@ export const test = base.extend<{
    * Provide authenticated API client for test.
    * 
    * Creates a new test user and sets token in API client.
+   * Stores JWT token in localStorage as 'jwt' which Conduit app expects.
+   * When page loads, Redux middleware reads jwt from localStorage and:
+   * - Initializes logged-in state
+   * - Sets Authorization header for API requests
    * Automatically cleaned up after test.
    */
-  authenticatedRequest: async ({}, use) => {
+  authenticatedRequest: async ({ page }, use) => {
     const client = new ApiClient();
     const testUser = await createTestUser(client);
     client.setAuthToken(testUser.token);
+    
+    // Navigate to app first so localStorage is accessible
+    await page.goto(ENV.BASE_URL);
+    
+    // Store JWT in localStorage with key 'jwt' as Conduit Redux expects
+    // Redux middleware will read this on app load and set Authorization headers
+    await page.evaluate((token) => {
+      localStorage.setItem('jwt', token);
+    }, testUser.token);
+    
+    // Reload page so Redux initializes with token from localStorage
+    await page.reload({ waitUntil: 'networkidle' });
+    
     await use(client);
     // Cleanup happens automatically
   },

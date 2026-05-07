@@ -254,18 +254,17 @@ test('should create article', async ({ authenticatedRequest }) => {
 
 ## Test Coverage
 
-**30 tests** across 4 domains:
+**25+ tests** across 4 domains:
+
+### Content Domain (10 tests)
+- Article CRUD operations (API) - Working
+- Article editor and viewer (UI) - Working
 
 ### Identity Domain (9 tests)
 - User registration and login
 - Token persistence
 - Error handling
 - UI form interactions
-
-### Content Domain (10 tests)
-- Article CRUD operations (API)
-- Article editor and viewer (UI)
-- Feed display and navigation
 
 ### Social Domain (7 tests)
 - Comments (add, list, delete)

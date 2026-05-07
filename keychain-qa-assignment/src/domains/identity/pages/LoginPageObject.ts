@@ -37,10 +37,10 @@ export class LoginPageObject {
   /**
    * Navigate to the login page.
    * 
-   * Loads /#/login and waits for page to be interactive.
+   * Loads /login and waits for page to be interactive.
    */
   async navigateToLoginPage(): Promise<void> {
-    await this.page.goto(`${ENV.BASE_URL}/#/login`, { waitUntil: 'networkidle' });
+    await this.page.goto(`${ENV.BASE_URL}/login`, { waitUntil: 'networkidle' });
   }
 
   /**
